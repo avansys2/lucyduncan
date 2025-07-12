@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Dama En Boston - Vista Previa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            background-color: #fdfaf6; /* Un blanco roto cálido para la página */
+        }
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+        }
+        .book-content p {
+            text-indent: 2em; /* Indentación de primera línea para párrafos */
+            margin-bottom: 1rem;
+            line-height: 1.75; /* Interlineado generoso para facilitar la lectura */
+            text-align: justify;
+        }
+        .book-content p:first-of-type {
+            text-indent: 0; /* Sin indentación para el primer párrafo de una sección */
+        }
+        .dedication, .copyright {
+            text-align: center;
+            font-style: italic;
+            color: #57534e; /* Tono de gris cálido */
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+        }
+        .chapter-location {
+            text-align: center;
+            font-style: italic;
+            color: #78716c;
+            margin-bottom: 2rem;
+        }
+        .letter {
+            border-left: 2px solid #d6d3d1;
+            padding-left: 1.5rem;
+            margin: 2rem 1rem;
+            font-style: italic;
+            color: #44403c;
+        }
+        .letter p {
+            text-indent: 0;
+        }
+        hr.separator {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+            margin: 4rem 0;
+        }
+        /* Estilos para el menú flotante de compra */
+        #buy-menu {
+            transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-stone-800">
+
+    <!-- Botón Flotante de Compra y Menú (Ahora arriba a la izquierda) -->
+    <div id="buy-links-container" class="fixed top-6 left-6 z-50">
+        <!-- Botón principal flotante -->
+        <button id="buy-button" title="Comprar el libro" class="bg-stone-800 text-white h-14 px-5 rounded-full shadow-lg flex items-center justify-center gap-3 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stone-500 transition-transform duration-200 hover:scale-105">
+            <!-- Icono SVG de carrito de compras -->
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span class="font-semibold text-lg">Comprar</span>
+        </button>
+        <!-- Menú desplegable (inicialmente oculto) -->
+        <div id="buy-menu" class="hidden absolute top-16 left-0 mt-2 w-48 bg-white rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 transform scale-95 opacity-0">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan-ebook/dp/B0FGTMY2CH" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-100 hover:text-stone-900 font-semibold" role="menuitem">
+                    <span class="mr-2">📖</span> Ebook
+                </a>
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan/dp/B0FGY5FCRW" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-100 hover:text-stone-900 font-semibold" role="menuitem">
+                    <span class="mr-2">📗</span> Tapa Blanda
+                </a>
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan/dp/B0FGY1TJKC" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-100 hover:text-stone-900 font-semibold" role="menuitem">
+                    <span class="mr-2">📘</span> Tapa Dura
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor principal del libro -->
+    <main class="max-w-3xl mx-auto p-6 sm:p-8 md:p-12 bg-white shadow-lg my-8 rounded-lg">
+
+        <!-- Portada -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 text-stone-900">Una Dama En Boston</h1>
+            <h2 class="text-xl md:text-2xl text-stone-600">Lucy Duncan</h2>
+        </header>
+
+        <!-- Video Trailer -->
+        <section class="my-8">
+             <div class="relative w-full" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+                <iframe class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/36C7kKj8s0g" title="Tráiler del libro Una Dama en Boston" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Sección de Compra (Inicio) -->
+        <section class="my-12 text-center">
+            <h3 class="text-2xl font-semibold mb-6 text-stone-800">Consigue tu copia</h3>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan-ebook/dp/B0FGTMY2CH" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-stone-700 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><span class="text-xl">📖</span>Ebook</a>
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan/dp/B0FGY5FCRW" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-stone-700 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><span class="text-xl">📗</span>Tapa Blanda</a>
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan/dp/B0FGY1TJKC" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-stone-700 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><span class="text-xl">📘</span>Tapa Dura</a>
+            </div>
+        </section>
+
+
+        <!-- Dedicatoria -->
+        <section class="dedication text-lg">
+            <p>A mis hijos, Martín y Nicolás, mis grandes amores.</p>
+            <p>Gracias a mi hermana, compañera inseparable.</p>
+            <p>Para mi padre, ejemplo de vida.</p>
+            <p>En memoria de mi madre, por todo lo que soy.</p>
+            <p>Y a todos los que me ayudaron en este proceso.</p>
+            <p class="mt-8">L.D.</p>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Copyright -->
+        <section class="copyright text-sm">
+            <p>Copyright © 2025 Lucy Duncan</p>
+            <p>Todos los derechos reservados.</p>
+            <p>ISBN: 9798291126769</p>
+        </section>
+
+        <!-- Contenido de los capítulos -->
+        <div class="book-content text-lg">
+            
+            <!-- Capítulo 1 -->
+            <article>
+                <header class="text-center my-12">
+                    <h3 class="text-3xl font-bold mb-4">Capítulo 1</h3>
+                    <h4 class="text-2xl">Una Decisión Poco Convencional</h4>
+                </header>
+                <p class="chapter-location">1878, Northbrook, Hampshire, Inglaterra.</p>
+                <p>Era para su época una verdad no discutida y ampliamente sabida, que una mujer sin fortuna debía soportar las aflicciones de su posición con dignidad y resignación, o encontrar los medios para alterarla mediante un matrimonio ventajoso. Sin embargo, algunas damas poseían una determinación que las llevaría por senderos menos transitados, donde la convención social y la prudencia femenina parecen extraviarse en favor de empresas más audaces.</p>
+                <p>La señorita Amelia Woodfield pertenecía decididamente a esta última categoría, aunque pocos en el tranquilo pueblo de Northbrook, Hampshire, hubieran podido predecirlo. A sus veinticinco años, Amelia poseía esa peculiar combinación de belleza discreta y agudeza de ingenio que, si bien la hacía destacar en cualquier reunión social, no había conseguido asegurarle un esposo. A menudo escuchaba a sus padres dialogar sobre su situación, con ligeras variaciones.</p>
+                <p>—Es incomprensible, absolutamente incomprensible —repetía con frecuencia la Baronesa Woodfield a su esposo, mientras este se refugiaba tras las páginas del periódico matutino—. Nuestra Amelia posee todas las cualidades que cualquier caballero sensato podría desear, y sin embargo, permanece soltera mientras jóvenes con la mitad de sus encantos y un tercio de su inteligencia se casan sin dificultad alguna.</p>
+                <p>El Barón Woodfield, hombre de pocas palabras pero considerables reflexiones, bajaba ligeramente su periódico para responder:</p>
+                <p>—Tal vez sea precisamente su inteligencia la que ahuyenta a los pretendientes, querida. Los hombres suelen preferir esposas que los admiren sin cuestionarlos demasiado.</p>
+                <p>Amelia poseía esa belleza luminosa y espontánea que atraía miradas sin esfuerzo alguno. Sus ojos de un azul intenso, herencia directa del Barón Woodfield, brillaban usualmente con una vivacidad que ni siquiera la preocupación o la tristeza conseguía apagar por completo. Los rizos cobrizos que enmarcaban su rostro en delicada rebeldía habían sido el orgullo de su padre, quien siempre sostuvo que semejante cabellera valdría más que cualquier dote en el mercado matrimonial.</p>
+                <p>La relación entre las hermanas Woodfield era de esas raras alianzas femeninas donde la diferencia de temperamentos fortalecía su vínculo en lugar de debilitarlo. Amelia, con su pragmatismo y serenidad, había sido desde siempre la protectora natural de Elizabeth, cuya naturaleza impulsiva y romántica la predisponía a entusiasmos tan intensos como efímeros. "Mi querida Lizzy," solía decir su padre con indulgente afecto, "tienes el corazón demasiado cerca de la superficie.". La Baronesa Woodfield, por su parte, veía en Elizabeth el reflejo de su propia juventud sentimental, antes de que las responsabilidades domésticas templaran ligeramente sus inclinaciones dramáticas, y encontraba en ella una confidente natural para sus frecuentes agitaciones nerviosas.</p>
+                <p>El hogar de los Woodfied rebosaba dicha hasta que repentinamente, un trágico accidente de carruaje en una noche de tormenta había arrebatado la vida del patriarca sin la menor advertencia, dejando tras de sí un vacío tan vasto como inesperado. Un hecho fatídico que había alterado profundamente la existencia de su familia. Amelia fue quien supo soportar el dolor con una compostura admirable, convirtiéndose en el silencioso pilar de la casa mientras su madre sucumbía a episodios de llanto y melancolía. Amelia sentía con la misma magnitud la pérdida, más su dolor lo reservaba en su pecho, debiendo brindar consuelo. El luto había envuelto Rosewood Cottage en un manto gris, y con él, habían llegado revelaciones inquietantes sobre el verdadero estado de sus finanzas.</p>
+                <p>A tan solo cuatro meses de la muerte del Barón Woodfield, se había alterado drásticamente la posición de la honorable familia. La abultada renta que antes sustentaba su cómoda existencia se había reducido a una suma apenas suficiente para mantener las apariencias, y la elegante casa de Northbrook había pasado a manos del pariente masculino, Lord William Woodfield, primo de su padre. Este, muy amablemente, había permitido a la Baronesa y a las señoritas Woodfield seguir residiendo en el que fuera su hogar. Sin embargo, dicha propiedad debía ser vendida para saldar deudas de las que nadie había tenido conocimiento, revelando la ludopatía del patriarca tras su partida.</p>
+                <p>—¿Qué será de nosotras? —se lamentaba la Baronesa Woodfield durante el desayuno, mientras releía la carta de su primo tercero, el vicario Stillman, quien generosamente les ofrecía ocupar las habitaciones superiores de la rectoría—. Reducidas a vivir de la caridad familiar, sin posibilidad de mantener una posición respetable en sociedad.</p>
+                <p>Elizabeth, la hermana menor de Amelia, derramó silenciosas lágrimas sobre su taza de té. A sus dieciocho años recién cumplidos, veía desvanecerse ante sus ojos las promesas de su primer baile y las esperanzas de un brillante porvenir matrimonial.</p>
+                <p>—Mamá—intervino Amelia con esa tranquila determinación que la caracterizaba— , he estado reflexionando sobre nuestra situación y creo haber encontrado una solución que, si bien es poco convencional, podría resultar ventajosa para todas.</p>
+                <p>La Baronesa Woodfield alzó la mirada, súbitamente interesada. Las soluciones de Amelia, aunque poco ortodoxas, solían ser efectivas, como cuando sugirió alquilar el pabellón de caza para equilibrar los gastos domésticos, o cuando convenció al vicario de que Elizabeth tocara el órgano en los servicios dominicales a cambio de lecciones de francés.</p>
+                <p>—He recibido correspondencia de vuestra prima Augusta Harrington, madre —continuó Amelia—. Su esposo ha prosperado notablemente en Boston y solicita a una dama de confianza para supervisar la educación de sus tres hijas. El puesto incluye alojamiento, sustento y una asignación anual de cien libras.</p>
+                <p>—¡Amelia! —exclamó su madre con evidente horror—. ¿Estás sugiriendo convertirte en institutriz? ¿Una Woodfield reducida a servir en casa ajena? Tu padre se revolvería en su tumba.</p>
+                <p>—No se trata de servir, madre, sino de asistir a nuestra propia familia. La señora Harrington es nuestra pariente, por distante que sea el parentesco —respondió Amelia con calma—. Además, considero que América ofrece posibilidades que Inglaterra nos niega. No sería la primera dama de buena cuna que cruza el Atlántico en busca de mejor fortuna.</p>
+                <p>La Baronesa Woodfield dejó escapar un suspiro dramático que amenazaba con convertirse en uno de sus habituales ataques de nervios.</p>
+                <p>—Preferiría verte casada con el hijo del herrero que establecida en ese continente bárbaro donde dicen que las damas salen solas a la calle y conversan con caballeros sin la debida presentación.</p>
+                <p>—Boston no es la frontera salvaje, madre —repuso Amelia —. Es una ciudad de cultura y refinamiento comparable a Londres en muchos aspectos. La familia Harrington se mueve en los mejores círculos de la sociedad bostoniana.</p>
+                <p>Elizabeth, que había permanecido callada durante el intercambio, se animó repentinamente.</p>
+                <p>—¿Y si yo te acompañara, Amy? Podríamos enfrentar juntas la aventura.</p>
+                <p>La idea de separarse de su querida hermana había sido el único obstáculo verdadero en los planes de Amelia. La posibilidad de que Elizabeth la acompañara iluminó su rostro con una sonrisa espontánea.</p>
+                <p>—¡Cielos! ¿Pretenden abandonarme ambas? —la Baronesa Woodfield presionó su pañuelo contra los ojos—. ¿Qué clase de hijas he criado, para que deseen tan fervientemente escapar del seno materno?</p>
+                <p>—No deseamos escapar, madre —aclaró Amelia con paciencia—. Deseamos asegurar nuestro futuro y el tuyo. Si logramos establecernos favorablemente en Boston, podrías reunirte con nosotras. Imagina las posibilidades: una new sociedad donde nuestro apellido mantiene su prestigio, pero donde nuestras limitaciones económicas no son de conocimiento público.</p>
+                <p>La mención de una sociedad donde su reducida circunstancia permanecería en secreto pareció despertar el interés de la Baronesa Woodfield. Si había algo que temía más que la perspectiva de América, era enfrentar la compasión apenas disimulada de quienes habían sido sus iguales.</p>
+                <p>—Suponiendo que considerara semejante plan—dijo, abandonando gradualmente su postura de rechazo absoluto—, ¿cómo financiaríamos tal empresa? El viaje transatlántico no es un asunto baladí.</p>
+                <p>—La señora Harrington ha ofrecido adelantar los gastos del pasaje —respondió Amelia, quien evidentemente había considerado todos los pormenores—. Y tengo mis ahorros de los últimos cinco años, aquellos que papá insistía en que guardara para mi ajuar.</p>
+                <p>La mirada de la Baronesa Woodfield se tornó calculadora. Su hija mayor siempre había demostrado un sentido práctico que ella misma no poseía, y debía admitir que sus perspectivas en Hampshire eran deprimentes.</p>
+                <p>—Lady Bentham sostendrá que huimos como ladrones en la noche —murmuró, pensando en su antigua rival social—. Y la señora Ashworth seguramente especulará que nos marchamos para ocultar algún escándalo.</p>
+                <p>—Dejaremos Hampshire con la frente en alto, como las damas que somos —afirmó Amelia—. Informaremos a nuestras amistades que hemos sido invitadas por parientes distinguidos para una estancia prolongada, lo cual es esencialmente cierto.</p>
+                <p>La Baronesa Woodfield, aún indecisa, solicitó un tiempo para considerar lo propuesto. Aquella misma tarde, sin embargo, mientras caminaba por el pueblo con su cesta, dos incidentes la acercaron considerablemente a la perspectiva de su hija. Primero, al pasar junto a la mansión Brookfield, donde tantas veladas sociales había disfrutado, escuchó claramente a la joven Lady Farrington comentar que "las Woodfield tendrán que acostumbrarse a frecuentar círculos mucho menos selectos", seguido de una risa condescendiente que le dolió más que cualquier palabra. Al regresar a casa, encontró sobre la mesa una carta del abogado familiar, informando que los acreedores habían acordado adelantar la fecha de venta de la propiedad. Con manos temblorosas y el corazón oprimido por la humillación, la matriarca buscó a Amelia en el jardín.</p>
+                <p>—Quizás América no sea una idea tan descabellada después de todo—murmuró, rindiéndose finalmente a la evidencia de que su posición en Hampshire estaba irremediablemente perdida.</p>
+                <p>La partida se decidió finalmente aquella misma tarde. La Baronesa Woodfield, tras consultar con su médico sobre los peligros del mareo en alta mar y recibir garantías de que su constitución lo resistiría, accedió a acompañar a sus hijas en lo que ella denominaba "nuestro exilio voluntario".</p>
+                <p>Los preparativos ocuparon las siguientes semanas. Amelia, con su característica eficiencia, dispuso la venta de gran parte de sus posesiones, reservando únicamente aquellos objetos de valor sentimental y las prendas adecuadas para su nueva vida. Escribió a la señora Harrington aceptando su oferta y confirmando que viajarían en el primer barco disponible desde Southampton.</p>
+                <p>El pueblo entero pareció conmocionado ante la noticia. Las visitas a la residencia Woodfield se multiplicaron, no tanto por solidaridad sino por curiosidad apenas disfrazada de cortesía.</p>
+                <p>—Querida Amelia—comentó la señora Pembroke durante una de estas visitas—, dicen que las damas americanas carecen por completo de modales refinados y que sus maridos hacen fortuna de maneras que aquí serían consideradas completamente inapropiadas.</p>
+                <p>—En ese caso, señora Pembroke—respondió Amelia con una sonrisa educada pero firme—, tendré el privilegio de observar por mí misma si tales rumores tienen fundamento.</p>
+                <p>La señora Pembroke, viuda de un magistrado local y autoproclamada guardiana de las buenas costumbres de Northbrook, había sido durante años la más implacable crítica de cualquier comportamiento que se desviara de lo que ella consideraba apropiado. Su visita no era sino la culminación de una larga historia de observaciones mordaces sobre la familia Woodfield, a quienes consideraba "demasiado liberales" en su educación de las niñas. El difunto Barón Woodfield solía decir, en la intimidad de su hogar, que si la señora Pembroke empleara en obras caritativas la mitad del tiempo que dedicaba a criticar al prójimo, el condado entero se beneficiaría enormemente.</p>
+                <p>El día anterior a su partida, mientras supervisaba el embalaje de los últimos baúles, Amelia recibió una inesperada visita. El señor James Worthington, hijo del terrateniente más próspero del condado y considerado uno de los solteros más codiciados, solicitaba verla en privado.</p>
+                <p>El señor Worthington era un joven de veintiocho años, de figura esbelta pero vigorosa, con ese porte distinguido que solo la combinación de buena cuna y educación esmerada puede otorgar. Sus ojos oscuros, enmarcados por cejas bien definidas, le conferían una expresión de seriedad que contrastaba con la amabilidad habitual de su sonrisa. Amelia siempre lo había encontrado agradable en los eventos sociales, aunque sus conversaciones rara vez habían ido más allá de las formalidades.</p>
+                <p>Lo que Amelia ignoraba era que el joven había desarrollado una silenciosa admiración hacia ella durante los últimos dos años, nacida inicialmente de su belleza y más tarde de su elocuencia. James había quedado impresionado por la combinación de gentileza y firmeza que Amelia poseía, buscando discretamente su compañía en cada evento social, aunque su natural reserva le habían impedido declarar sus sentimientos abiertamente.</p>
+                <p>—Señorita Woodfield—comenzó, tras los saludos de rigor—, me he enterado de su inminente partida y no podía permitir que se marchara sin expresarle la profunda admiración que siempre me ha despertado.</p>
+                <p>Amelia observó al joven con curiosidad. Habían coincidido en numerosas ocasiones sociales, pero nunca habían mantenido una conversación que pudiera considerarse personal.</p>
+                <p>—Es muy amable de su parte, señor Worthington, pero temo que sus palabras llegan en un momento en que mis planes están decididos.</p>
+                <p>—Precisamente por ello me he atrevido a visitarla—continuó él, con evidente nerviosismo—. Si me hubiera permitido conocer antes sus circunstancias, quizás habría podido ofrecerle una alternativa a tan drástica decisión.</p>
+                <p>El rubor en las mejillas del caballero sugería claramente la naturaleza de dicha alternativa. Amelia sintió una punzada de algo que podría haber sido arrepentimiento en otras circunstancias.</p>
+                <p>—Señor Worthington, su atención me honra—respondió con sinceridad—, pero debo confesarle que mi viaje a América no responde únicamente a necesidades económicas. Existe en mí un deseo de conocer un mundo diferente, de probar mis capacidades más allá de los límites que nuestra sociedad impone a una dama.</p>
+                <p>El joven la observó con una mezcla de admiración y desconcierto, como quien contempla un objeto hermoso pero incomprensible.</p>
+                <p>—Es usted extraordinaria, señorita Woodfield. Quizás precisamente por ello lamento tanto su partida.</p>
+                <p>La visita pareció comprender la firme decisión de Amelia y la conversación derivó hacia temas relacionados al viaje y a su destino, Boston. La despedida fue cordial y sin atisbos de un sentimiento romántico profundo.</p>
+                <p>Aquella noche, recostada en la que sería su última noche en el lecho que la había acogido desde su infancia, Amelia reflexionó sobre la ironía de recibir, en vísperas de su partida, la primera insinuación romántica que podría haber alterado su destino. Aliviada ante la ignorancia de su madre, capaz de obligarla a cancelar la aventura que estaban a punto de emprender de enterarse, ella no tenía arrepentimiento ante el ocultamiento, sentía una creciente emoción ante lo desconocido.</p>
+                <p>La mañana siguiente amaneció con una ligera llovizna, tan típica de Inglaterra que Amelia no pudo evitar preguntarse si el clima de Boston resultaría igualmente predecible en su impredictibilidad. Los baúles fueron cargados en el carruaje alquilado para conducirlas a Liverpool, donde abordarían el SS Germanic, con rumbo a New York y de allí a Boston, su nueva vida.</p>
+                <p>El viaje que les aguardaba duraría casi dos semanas, cruzando el vasto océano que separaba el mundo conocido de aquel que habían elegido explorar. El peso de tal decisión se manifestaba en el silencio que acompañó a las tres mujeres durante las primeras millas del trayecto.</p>
+                <p>Fue Elizabeth quien finalmente rompió el silencio, con la impetuosidad propia de su juventud.</p>
+                <p>—Amy—dijo, utilizando el apelativo familiar que sólo se permitía en la intimidad—, ¿crees que encontraremos la felicidad en América?</p>
+                <p>Amelia contempló el paisaje inglés que desfilaba ante su ventana, las suaves colinas y los setos perfectamente recortados que habían enmarcado toda su existencia.</p>
+                <p>—Creo que tenemos más posibilidades de encontrarla allí que aquí, querida Lizzy —respondió con una sonrisa—. O nos consolaremos con la libertad de labrar nuestro propio destino, aunque sea en tierras extranjeras. Y en esa búsqueda, podemos encontrar algo mucho más valioso que la mera conformidad que nos aguardaba en Northbrook.</p>
+                <p>La Baronesa Woodfield, que había permanecido inusualmente callada, observó a su hija mayor con renovado respeto. Quizás, pensó, Amelia había heredado más de su padre de lo que cualquiera hubiera sospechado: esa inquebrantable determinación ante la adversidad y ese espíritu aventurero que, en sus años de juventud, la había cautivado.</p>
+                <p>El carruaje continuó su camino hacia Liverpool, llevando a las tres damas Woodfield hacia una travesía que prometía ser tan incierta como esperanzadora. El trayecto hasta el puerto ocupó la mayor parte del día, con paradas ocasionales para que la Baronesa Woodfield pudiera recuperarse de los efectos que el movimiento del carruaje producía en su delicada constitución. Amelia, por su parte, sabía que cada milla que recorrían la alejaba del destino prescrito para una dama de su posición, acercándola a un horizonte de posibilidades que, hasta ahora, sólo había podido vislumbrar en sus sueños más audaces.</p>
+            </article>
+
+            <hr class="separator">
+
+            <!-- Capítulo 2 -->
+            <article>
+                <header class="text-center my-12">
+                    <h3 class="text-3xl font-bold mb-4">Capítulo 2</h3>
+                    <h4 class="text-2xl">Despedidas y Promesas</h4>
+                </header>
+                <p>El puerto de Liverpool, a orillas del río Mersey, recibió a las tres damas Woodfield con un cielo plomizo y el aire salobre que anunciaba la cercanía del mar. Las calles adoquinadas rebosaban de actividad mientras marineros, comerciantes y viajeros transitaban con determinación entre la hilera de almacenes de ladrillo rojo y las posadas. Para una familia acostumbrada a la quietud bucólica de Hampshire, el bullicio resultaba tan sobrecogedor como revelador de la magnitud del cambio que estaban a punto de emprender.</p>
+                <p>El cochero, un hombre de mediana edad con el rostro curtido por incontables travesías entre condados, depositó los baúles en la acera frente a la posada "El Ancla Dorada" con una eficiencia que sugería considerable experiencia en despedir a viajeros transatlánticos.</p>
+                <p>—Les recomiendo descansar apropiadamente esta noche, Ladies—aconsejó, aceptando su pago con una leve inclinación—. El SS Germanic zarpa con la marea matutina y, si me permiten la observación, es preferible afrontar el mar con el cuerpo descansado y el estómago satisfecho.</p>
+                <p>La Baronesa Woodfield, quien había soportado el trayecto desde Northbrook alternando entre suspiros melancólicos y quejas sobre la dureza de los asientos, contempló la modesta posada con mal disimulado desdén.</p>
+                <p>—¿Es absolutamente necesario que pasemos la noche en semejante establecimiento? —murmuró, ajustando su sombrero desplazado por una ráfaga marina—. El olor a pescado resulta francamente abrumador.</p>
+                <p>—Todas las posadas cercanas al puerto poseen características similares, madre —respondió Amelia con ese tono paciente que había perfeccionado durante las últimas semanas—. Los viajeros distinguidos generalmente arriban a Southampton la misma mañana de su embarque, pero nuestra situación aconsejaba prudencia.</p>
+                <p>Elizabeth, cuyos ojos brillaban con la emoción de la aventura, observaba fascinada el constante ir y venir de figuras extranjeras.</p>
+                <p>—¡Mira, Amy!—exclamó, señalando discretamente hacia un grupo de caballeros que conversaban animadamente en lo que parecía ser italiano—. ¡Incluso antes de zarpar, ya nos encontramos rodeadas de influencias continentales!</p>
+                <p>La posada, a pesar de su aspecto exterior poco prometedor, resultó inesperadamente confortable en sus habitaciones superiores. La propietaria, la viuda Simmons, era una mujer robusta de modales eficientes que parecía haber catalogado mentalmente a sus huéspedes en el instante mismo de su llegada.</p>
+                <p>—Ustedes no son comerciantes ni esposas de marineros—observó mientras las conducía personalmente a sus aposentos—. ¿Primeras en su familia en cruzar el Atlántico, supongo?</p>
+                <p>Amelia asintió, impresionada por la perspicacia de la mujer.</p>
+                <p>—Mi difunto esposo capitaneó un barco mercante durante treinta años—explicó la señora Simmons con orgullo—. Aprendí a reconocer la mirada de quien contempla el océano por primera vez. Mezcla de temor y esperanza, inconfundible para quien sabe observar.</p>
+                <p>La habitación asignada a las Woodfield, aunque modesta, ofrecía una vista privilegiada sobre el puerto, donde el imponente perfil del barco de hierro y vapor dominaba el horizonte marítimo, con su estructura robusta y alargada. Resaltaban dos imponentes chimeneas amarillas con bandas negras, que expulsaban el humo del carbón. En dos de sus cuatro mástiles colgaban las velas auxiliares, blancas y replegadas, listas para abrirse al viento si se requería, recordando a todos que, aunque el vapor dominaba los mares, la tradición de la navegación a vela aún no había sido completamente desterrada. Con ello se reducía el consumo de carbón y se proporcionaba apoyo en caso de fallo mecánico. En los otros dos, se alzaba una bandera de Reino Unido y una de la compañia, White Star Line. La elegante línea del casco negro del trasatlántico sugerían velocidad y seguridad, cualidades sumamente apreciadas en una embarcación destinada a cruzar el temible Atlántico.</p>
+                <p>Aquella primera tarde en Liverpool transcurrió rápidamente entre trámites y preparativos finales. Amelia verificó en tres ocasiones los documentos de viaje, revisó la correspondencia con la señora Harrington, y se aseguró de que sus baúles fueran trasladados al barco a primera hora. Elizabeth insistió en pasear brevemente por el puerto, maravillándose ante la diversidad de embarcaciones y nacionalidades que convergían en aquel punto de Inglaterra. La Baronesa Woodfield, por su parte, se retiró temprano, aquejada de un repentino dolor de cabeza que atribuyó al "vulgar aroma a brea y salazones".</p>
+                <p>La cena la tomaron en un pequeño comedor privado, donde la viuda Simmons les sirvió un estofado de pescado sorprendentemente delicado, acompañado de pan recién horneado.</p>
+                <p>—Mañana deben desayunar abundantemente—aconsejó la posadera—. Los primeros días en alta mar suelen matar el apetito incluso de los estómagos más resistentes.</p>
+                <p>Elizabeth, cuyo optimismo parecía incrementarse conforme se acercaba la partida, comentó alegremente:</p>
+                <p>—¡Qué fortuna que hayamos decidido viajar en primavera! El cochero mencionó que el otoño es traicionero para las travesías.</p>
+                <p>Terminada la cena, mientras Elizabeth se entregaba a la lectura de una novela que había empacado específicamente para el viaje, Amelia decidió escribir una última carta. La destinaba al reverendo Stillman, aquel primo tercero que tan generosamente les había ofrecido alojamiento en la rectoría. La cortesía exigía agradecimiento, incluso hacia propuestas rechazadas.</p>
+                <div class="letter">
+                    <p>Comenzó con tinta fresca y caligrafía esmerada:</p>
+                    <p>"Estimado primo Stillman:</p>
+                    <p>En vísperas de nuestra partida hacia tierras americanas, deseo expresarle mi más sincero agradecimiento por su generosa oferta de acogernos en la rectoría. Su bondad cristiana nos conmovió profundamente, y siempre recordaremos tal gesto como prueba de los sólidos valores familiares que el difunto señor Woodfield tanto apreciaba.</p>
+                    <p>Nuestra decisión de emprender esta aventura transatlántica no debe interpretarse como desprecio hacia su hospitalidad, sino como la búsqueda de un camino que permita a esta rama de la familia recuperar…"</p>
+                    <p>La pluma se detuvo sobre el papel. ¿Recuperar qué, exactamente? ¿La posición social perdida? ¿La independencia económica? ¿O perseguían algo que nunca antes habían poseído: la libertad de forjar un destino propio, sin las limitaciones que la sociedad inglesa imponía a tres mujeres solas?</p>
+                    <p>Tras una pausa reflexiva, Amelia continuó:</p>
+                    <p>"...recuperar la estabilidad que las circunstancias recientes nos han arrebatado. Confiamos en que nuestros parientes Harrington nos brindarán la oportunidad de establecernos dignamente en Boston, ciudad que, según todas las referencias, combina admirablemente el refinamiento europeo con el espíritu emprendedor del Nuevo Mundo.</p>
+                    <p>Le ruego transmita nuestros afectuosos saludos a nuestros conocidos. Prometo escribir nuevamente cuando hayamos arribado a nuestro destino, para compartir nuestras primeras impresiones de la sociedad bostoniana.</p>
+                    <p>Su agradecida prima,</p>
+                    <p>Amelia Woodfield”</p>
+                </div>
+                <p>Al sellar la carta, Amelia experimentó una extraña sensación de finalidad. Aquellas palabras representaban la nueva forma de vínculo activo con la vida que abandonaba. Mañana, cuando entregara la misiva al correo del puerto, comprendería que solo el intercambio de correspondencia escrita sería el cordón que las mantendrá unidas a Hampshire.</p>
+                <p>El amanecer llegó con una claridad sorprendente, como si el cielo inglés quisiera grabar su imagen en la memoria de quienes partían. Los primeros rayos solares iluminaron las velas blancas de los navíos anclados, transformando el puerto en un cuadro digno de ser inmortalizado por Turner.</p>
+                <p>Las Woodfield se encontraban ya preparadas, ataviadas con sus trajes de viaje más prácticos y sombreros asegurados firmemente contra el viento marino. La Baronesa Woodfield, quien había pasado una noche intranquila poblada de pesadillas sobre naufragios y piratas, mostraba en su rostro la palidez característica de quien enfrenta lo inevitable con más resignación que entereza.</p>
+                <p>—He escuchado que en América las damas beben té con limón en lugar de leche —comentó, como si tal barbarismo culinario fuera prueba suficiente de la inferioridad cultural del Nuevo Mundo.</p>
+                <p>Amelia, verificando por enésima vez que llevaran consigo los documentos esenciales, apenas sonrió ante la observación materna. Su mente estaba ocupada en calcular el tiempo necesario para llegar al muelle, registrarse apropiadamente, y localizar sus camarotes antes de la partida.</p>
+                <p>Fue en ese preciso momento, mientras la viuda Simmons supervisaba personalmente que el desayuno fuera consumido en su totalidad "para fortalecer el estómago contra el oleaje", cuando se produjo un acontecimiento inesperado. El sonido de cascos de caballo y ruedas sobre adoquines anunció la llegada de un carruaje que se detuvo bruscamente frente a la posada. Segundos después, para asombro de las tres mujeres, la puerta del comedor se abrió para revelar la figura agitada del señor James Worthington.</p>
+                <p>El caballero, evidentemente exhausto tras lo que debió ser un viaje nocturno sin descanso, presentaba un aspecto impropio de su habitual compostura. Su cabello oscuro aparecía despeinado por el viento, la corbata ligeramente torcida, y en sus ojos brillaba una determinación casi febril.</p>
+                <p>—Señorita Woodfield—pronunció con voz entrecortada por el esfuerzo—, le ruego me conceda unos minutos de conversación privada.</p>
+                <p>La Baronesa Woodfield, repentinamente revitalizada ante la aparición del elegible heredero Worthington, se apresuró a intervenir:</p>
+                <p>—¡Señor Worthington! ¡Qué extraordinaria sorpresa! Por supuesto que Amelia estará encantada de conversar con usted. Elizabeth, querida, creo que hemos olvidado revisar el baúl pequeño. Acompáñame arriba.</p>
+                <p>Antes de que Amelia pudiera objetar, su madre y hermana habían abandonado estratégicamente la habitación, dejándola a solas con el recién llegado. La viuda Simmons, demostrando esa discreción que caracteriza a los buenos posaderos, también se eclipsó discretamente tras la puerta de la cocina.</p>
+                <p>—Señor Worthington—comenzó Amelia con calma estudiada—, no esperaba verle nuevamente. Nuestro barco zarpa en menos de dos horas.</p>
+                <p>El joven se acercó, con sus ojos fijos en ella y una intensidad inusitada en la mirada.</p>
+                <p>—He cabalgado toda la noche para alcanzarla antes de su partida —explicó—. Lo que debo decirle no podía confiarse a una carta.</p>
+                <p>Amelia indicó una silla, intentando restaurar cierta formalidad a tan irregular encuentro.</p>
+                <p>—Soy todo oídos, aunque debo advertirle que nada alterará nuestros planes de viaje.</p>
+                <p>James Worthington permaneció de pie, como si sentarse pudiera disminuir la urgencia de su mensaje.</p>
+                <p>—He venido a ofrecerle una promesa formal de matrimonio—declaró con solemnidad—. No una insinuación, como en nuestra conversación anterior, sino una propuesta definida y honesta.</p>
+                <p>El silencio que siguió resultó tan denso que podría haberse cortado con cuchillo. Amelia estudió el rostro del joven, buscando signos de la precipitación o el romanticismo impulsivo que ella tanto criticaba en las novelas que Elizabeth devoraba. Sin embargo, lo que encontró fue una resolución serena nacida de una reflexión madura.</p>
+                <p>—Señor Worthington—respondió finalmente—, su ofrecimiento me honra profundamente. Sin embargo, debo preguntarle: ¿qué ha cambiado desde nuestra última conversación? Entonces expresé claramente mis motivos para emprender este viaje.</p>
+                <p>—Lo que ha cambiado, señorita Woodfield, es mi comprensión de lo que estoy dispuesto a arriesgar por felicidad —respondió él con sorprendente franqueza—. Tras su partida, comprendí que mi reticencia a declarar mis sentimientos anteriormente se debía al temor de contradecir las expectativas paternas. Mi padre siempre ha favorecido una alianza con la familia Peterson, cuyas propiedades colindan con las nuestras.</p>
+                <p>Amelia asintió lentamente. La familia Peterson poseía extensas tierras y una hija, Prudence, cuya fortuna compensaba generosamente su limitado atractivo y conversación predecible.</p>
+                <p>—De modo que su propuesta actual contraviene los deseos de su padre—observó, valorando plenamente el significado de tal rebelión en un heredero tradicionalmente obediente.</p>
+                <p>—Mi padre es un hombre razonable que desea mi felicidad por encima de consideraciones territoriales—afirmó James, aunque el ligero temblor en su voz sugería menos certeza de la que sus palabras proclamaban—. Además, no le propongo abandonar vuestro viaje, sino modificar su naturaleza. Concédame seis meses para solucionar los asuntos familiares, y la alcanzaré en Boston. Podríamos regresar juntos a Inglaterra, o establecernos en América si así lo prefiere.</p>
+                <p>La propuesta, presentada con tal flexibilidad y consideración hacia sus propios deseos, conmovió a Amelia más de lo que habría podido anticipar. Por primera vez desde que había concebido su plan americano, sintió una vacilación genuina, no nacida del temor sino de posibilidades inesperadas.</p>
+                <p>—Seis meses es un período considerable para mantener una promesa suspendida sobre aguas tan vastas como el Atlántico—respondió, sin rechazar directamente la proposición—. Las intenciones más firmes pueden diluirse con la distancia y el tiempo.</p>
+                <p>James extrajo de su bolsillo un pequeño objeto envuelto en terciopelo.</p>
+                <p>—Mi abuela me entregó este anillo cuando cumplí veintiún años, con instrucciones de ofrecerlo únicamente a la mujer que considerara digna de convertirse en mi compañera de vida —explicó, revelando un delicado aro de oro con una piedra granate, asociada a la devoción eterna—. No pido una respuesta definitiva ahora, solo que acepte llevarlo consigo como prueba tangible de mis intenciones.</p>
+                <p>Amelia contempló la joya, conmovida no tanto por su valor material como por el significado familiar que encerraba. Aceptarla implicaría un compromiso tácito, una promesa de considerar seriamente su propuesta, mientras ella exploraba el Nuevo Mundo.</p>
+                <p>—Señor Worthington, su gesto me conmueve profundamente —comenzó, eligiendo cuidadosamente sus palabras—. Sin embargo, no puedo aceptar su anillo. Hacerlo significa comprometerse parcialmente a un futuro que aún no puedo visualizar con claridad. Sería injusto para ambos.</p>
+                <p>El rostro del joven reflejó decepción, pero también un innegable respeto por su honestidad.</p>
+                <p>—Comprendo y aprecio su franqueza, señorita Woodfield —respondió, guardando nuevamente el anillo—. Permítame entonces modificar mi propuesta: partiré hacia Boston en seis meses, independientemente de su respuesta. Si al encontrarnos allí sus sentimientos coinciden con los míos, renovaré mi ofrecimiento. Si no es así, me retiraré con la satisfacción de haber sido completamente sincero.</p>
+                <p>La determinación en su voz impresionó a Amelia, quien comenzaba a ver en James Worthington cualidades que sus interacciones previas, limitadas por las rígidas convenciones sociales de Hampshire, habían mantenido ocultas.</p>
+                <p>—No puedo prometer que mis sentimientos evolucionarán en la dirección que usted espera—advirtió con honestidad—, pero reconozco el valor de su propuesta y la consideraré con la seriedad que merece.</p>
+                <p>Un golpe en la puerta interrumpió la conversación. Era Elizabeth, quien asomó tímidamente la cabeza.</p>
+                <p>—Perdón por la intrusión, pero el mozo del puerto ha venido a buscar nuestro equipaje restante. Dice que debemos dirigirnos al muelle inmediatamente si no queremos perder la embarcación.</p>
+                <p>La realidad del inminente viaje rompió el breve hechizo creado por la inesperada propuesta. Amelia se puso en pie con renovada determinación.</p>
+                <p>—Debo partir, señor Worthington—declaró con suavidad—. Le agradezco haber recorrido tan largo camino para expresar sus sentimientos.</p>
+                <p>James se inclinó respetuosamente, recuperando parte de su compostura habitual.</p>
+                <p>—Le deseo un viaje seguro, señorita Woodfield. Nos veremos en Boston cuando el verano ceda paso al otoño.</p>
+                <p>La despedida fue breve pero intensa. La Baronesa Woodfield, quien evidentemente había escuchado suficiente de la conversación para alimentar sus esperanzas matrimoniales, trató de prolongarla con invitaciones para que el joven las acompañara al muelle, propuestas que Amelia cortó con amable firmeza.</p>
+                <p>Minutos después, la familia Woodfield se dirigía hacia el SS Germanic, donde la actividad frenética anunciaba la inminente partida. Se completaron los últimos preparativos, mientras pasajeros de diversas nacionalidades se despedían de familiares entre lágrimas. El puerto de Liverpool bullía con aquella peculiar energía que sólo puede encontrarse en los lugares donde los destinos humanos convergen para luego dispersarse a los confines de la tierra. Estibadores de rostros curtidos por el sol y el salitre cargaban baúles y cajas; marineros intercambiaban bromas soeces entre las cuerdas; comerciantes vocingleros ofrecían a los viajeros todo tipo de artículos supuestamente indispensables para la travesía; y, en medio de este tumulto, las damas Woodfield permanecían como islas de decoro, aferradas a sus guantes y parasoles como si estos objetos pudieran protegerlas de la incertidumbre que las aguardaba.</p>
+                <p>Mientras avanzaban entre la multitud, la Baronesa Woodfield examinaba la embarcación con evidente desconfianza, como si esperara que le confesara en cualquier momento su ineptitud para mantenerse a flote.</p>
+                <p>Amelia percibió la mirada inquisitiva de su hermana.</p>
+                <p>—¿Rechazaste su propuesta definitivamente? —preguntó Elizabeth en voz baja.</p>
+                <p>—Le dije que no podía comprometer mi corazón cuando mi mente está fija en horizontes desconocidos—respondió Amelia—. El verdadero afecto debe resistir la prueba del tiempo y la distancia.</p>
+                <p>Elizabeth suspiró con ese romanticismo propio de la juventud.</p>
+                <p>—Es como una de esas novelas donde el destino separa a los amantes para reunirlos después en circunstancias dramáticas.</p>
+                <p>—La vida rara vez imita a la literatura, querida—replicó Amelia con una sonrisa—, y las promesas hechas en momentos de exaltación suelen deshilacharse ante las realidades cotidianas.</p>
+                <p>A bordo del Majestuoso barco, un elegante mayordomo uniformado con camisa blanca y chaqueta negra cruzada las condujo a sus aposentos: un camarote sorprendentemente espacioso con tres camas, un escritorio de caoba, sillones de terciopelo verde y una lámpara de araña. Contaba con su baño privado, con bañera de mármol y grifería dorada. Un gran ventanal daba acceso a una exclusiva cubierta que ofrecía una última visión de Inglaterra. La Baronesa Woodfield, momentáneamente distraída de sus preocupaciones maritales por la novedad del alojamiento, inspeccionaba críticamente el mobiliario.</p>
+                <p>—Al menos parecen limpios—concedió, trazando un dedo sobre la superficie de una mesita—, aunque dudo que el balanceo permita mantener objeto alguno sobre estas superficies.</p>
+                <p>Mientras Elizabeth acomodaba sus escasas pertenencias personales, Amelia se permitió un momento de soledad junto a la ventana. Liverpool se extendía ante ella como una última postal de la vida que abandonaba: los tejados escalonados hacia el cielo, interrumpidos por las agujas de iglesias y las altas torres de las fábricas que echaban humo sin descanso, tiñendo el cielo de un tono grisáceo y envolviendo la ciudad en una neblina industrial. Destacaba, la Catedral de St. Nicholas, guardiana de la costa. El patrono de los marineros bendecía a los viajeros.</p>
+                <p>El sonido de una campana anunció la inminente partida. Los últimos visitantes descendían apresuradamente por la pasarela, llevándose consigo fragmentos de conversaciones interrumpidas. Abajo, en el muelle, familias enteras agitaban pañuelos y sombreros en señal de despedida.</p>
+                <p>Amelia salió a la cubierta y buscó instintivamente entre la multitud, aunque sabía que no encontraría rostros conocidos. Sus verdaderas despedidas se habían realizado semanas atrás, en la intimidad de Northbrook. Sin embargo, al escanear la primera fila de observadores, su mirada se detuvo en una figura solitaria.</p>
+                <p>James Worthington permanecía inmóvil entre el gentío, su postura erguida destacando entre quienes se agitaban emocionalmente. No sostenía pañuelo ni sombrero; simplemente observaba el barco con expresión serena, como si mediante la fuerza de su mirada pudiera transmitir la solidez de sus intenciones.</p>
+                <p>Un súbito nudo en la garganta sorprendió a Amelia. Había rechazado su propuesta con la certeza de quien sabe que los sentimientos expresados precipitadamente rara vez resisten separaciones prolongadas. Las promesas incumplidas eran moneda corriente en las relaciones humanas; ella misma había sido testigo de cómo las garantías más solemnes se desvanecían ante obstáculos menores que un océano. Aunque ésta, al ser expresada por un caballero de honor y palabra, tenía más chances de cumplirse.</p>
+                <p>Y sin embargo, al contemplar la figura del joven, tan determinado en su quietud, sintió una punzada de incertidumbre. ¿Era posible que estuviera rechazando algo verdaderamente excepcional en su búsqueda de independencia?</p>
+                <p>El pensamiento se interrumpió abruptamente cuando el barco emitió un potente silbato. La vibración recorrió la embarcación entera, señalando el momento exacto en que las amarras fueron liberadas. Lentamente, el SS Germanic comenzó a separarse del muelle, iniciando la travesía que transportaría a las Woodfield hacia una vida enteramente nueva.</p>
+                <p>—¡Amy!—exclamó Elizabeth, uniéndose a ella en la cubierta—. ¡Estamos realmente partiendo! ¿No es extraordinario?</p>
+                <p>Amelia asintió, permitiendo que una genuina sonrisa iluminara su rostro. Fuera cual fuese el destino que las aguardaba en Boston, lo afrontarían juntas, libres de las limitaciones que Hampshire les había impuesto. Si el señor Worthington cumplía su promesa de seguirlas, el tiempo determinaría si sus sentimientos eran lo suficientemente profundos para justificar un compromiso. Y si no lo hacía...</p>
+                <p>—Es extraordinario, Lizzy—confirmó, rodeando los hombros de su hermana con un brazo protector—. Y esto es apenas el comienzo.</p>
+                <p>Mientras el puerto se reducía gradualmente en la distancia, Amelia reflexionó sobre la naturaleza de las promesas. Algunas, como las que la unían a su madre y hermana, resultaban inquebrantables por estar forjadas en años de afecto y lealtad compartida. Otras, como la expresada apasionadamente por James Worthington, quedaban suspendidas en ese incierto territorio entre la intención y la acción.</p>
+                <p>La única promesa que Amelia podía garantizar con absoluta certeza era la que se había hecho a sí misma: construir para su familia una nueva existencia donde la independencia, no el matrimonio ventajoso, determinará su valor. Si dicha promesa la conduciría hacia la felicidad o el arrepentimiento, solo el tiempo y las aguas del Atlántico que ahora comenzaban a mecer suavemente el navío podrían revelarlo.</p>
+            </article>
+
+            <hr class="separator">
+
+            <!-- Capítulo 3 -->
+            <article>
+                <header class="text-center my-12">
+                    <h3 class="text-3xl font-bold mb-4">Capítulo 3</h3>
+                    <h4 class="text-2xl">Alta Mar</h4>
+                </header>
+                <p>La vastedad del océano se reveló ante los ojos de Amelia Woodfield como un lienzo infinito de azules cambiantes, más sobrecogedor de lo que cualquier pintura o descripción literaria hubiera podido sugerir. El SS Germanic, aquel coloso de acero y madera, se deslizaba con majestuosa determinación sobre las aguas, dejando atrás las costas de Inglaterra que ahora no eran más que una línea difusa en el horizonte. Tres días habían transcurrido desde su partida de Liverpool, tiempo suficiente para que las tres damas Woodfield se habituaran—con distintos grados de éxito— a la peculiar existencia que imponía la vida a bordo.</p>
+                <p>—Es una verdadera crueldad que el Creador haya dispuesto un obstáculo tan formidable entre los continentes—se lamentó la Baronesa Woodfield desde el diván donde había pasado la mayor parte de aquellas primeras jornadas, víctima de un mareo persistente que ni las sales aromáticas ni los remedios del médico de a bordo conseguían mitigar completamente—. Si hubiera deseado que los ingleses se establecieran en América, seguramente habría procurado un medio de transporte más civilizado que estas embarcaciones bamboleantes.</p>
+                <p>Elizabeth, quien contra todo pronóstico había desarrollado lo que el capitán denominaba "excelentes piernas marinas", apenas podía contener su entusiasmo ante cada nuevo descubrimiento a bordo. Recorría incansablemente las diversas cubiertas, entablaba conversación con pasajeros de las más variadas procedencias, y regresaba al camarote con relatos tan coloridos que incluso conseguían arrancar débiles sonrisas a su indispuesta madre.</p>
+                <p>—¡Dicen que esta noche habrá un concierto en el salón principal!—anunció, irrumpiendo en el camarote con las mejillas sonrosadas por el aire marino—. Una soprano italiana que viaja a Nueva York para presentarse en el Metropolitan. ¿No es fascinante, Amy? ¡En Hampshire podríamos esperar meses para disfrutar de semejante nivel artístico!</p>
+                <p>Amelia, quien había dividido sus horas entre atender a su madre, organizar sus documentos para la llegada, la lectura y breves paseos por la cubierta superior cuando las obligaciones se lo permitían, contempló a su hermana con afectuosa indulgencia.</p>
+                <p>—Parece que has abrazado la vida marítima con notable entusiasmo, querida. Difícilmente se te tomaría por una joven que hasta hace una semana jamás había visto el océano.</p>
+                <p>—Es imposible no entusiasmarse—respondió Elizabeth, acomodándose en el borde de la cama—. Todo resulta tan nuevo, tan distinto a nuestra existencia en Hampshire. ¿Sabes que he conversado con una dama de Chicago que viaja sola? Ni siquiera lleva doncella. Dice que las mujeres americanas han aprendido a prescindir de muchas convenciones que nosotras consideramos esenciales.</p>
+                <p>La Baronesa Woodfield emitió un débil gemido desde su refugio de almohadas.</p>
+                <p>—Si hubiera sabido que el mar se comportaría con tal desconsideración hacia una dama viuda, jamás habría consentido esta expedición temeraria—murmuraba—. No me sorprende que sufran de tan lamentable reputación. Una dama que viaja sin acompañamiento adecuado invita a toda clase de especulaciones sobre su carácter.</p>
+                <p>Amelia, sin embargo, no pudo evitar cierta admiración por aquella desconocida viajera. ¿No era acaso una suerte de independencia similar la que ella misma anhelaba, aunque en diferentes circunstancias?</p>
+                <p>—Deberás cambiarte para la cena, Lizzy—indicó, consultando el pequeño reloj de plata que había pertenecido a su padre—. Al parecer, las noches a bordo son ocasiones considerablemente formales.</p>
+                <p>Para quien, como Amelia Woodfield, había crecido en la predecible rutina de la vida rural inglesa, el comedor principal del SS Germanic ofrecía un espectáculo de deslumbrante novedad. Bajo arañas de cristal, que tintineaban suavemente con el movimiento de la nave, se congregaba cada noche una sociedad tan cosmopolita como elegante: industriales americanos regresando de viajes de negocios europeos, herederas británicas camino a ventajosos matrimonios en Nueva York, artistas franceses en busca de mecenazgo transatlántico, diplomáticos de diversas naciones. Con espacio para ciento veinte pasajeros de primera clase, el salón comedor se encontraba revestido con paneles de madera de nogal tallados con detalles ornamentales de flores y hojas, las alfombras de un azul profundo, poseían diseños persas. Las mesas estaban cubiertas con manteles de lino blanco y decoradas con vajilla de porcelana fina y cubertería de plata. En su centro, finos arreglos florales. Los asientos se encontraban tapizados con terciopelo de tono azul índigo, con respaldos y patas talladas que complementaban la estética general. El ambiente ofrecía un lujo destinado a garantizar una experiencia memorable.</p>
+                <p>La mesa asignada a las Woodfield, a pesar de la concurrencia, permanecía parcialmente vacía aquella noche, ya que el oleaje había arrastrado consigo el bienestar de varios pasajeros. La ausencia de la Baronesa Woodfield, quien había declarado que "preferiría morir de inanición a intentar ingerir alimento mientras el mundo entero se balanceaba", dejaba a las hermanas en compañía únicamente de la señora Winterbourne, una anciana sorda, y su acompañante, el señor Quincy, situación que Elizabeth consideraba "una lamentable limitación a las posibilidades sociales del viaje".</p>
+                <p>—Al menos la comida es considerablemente mejor de lo que habíamos anticipado —comentó Amelia, mientras el camarero servía una elaborada sopa de mariscos de aroma envolvente—. La señora Pembroke insistía en que nos veríamos reducidas a galletas rancias y carne salada durante la travesía.</p>
+                <p>Elizabeth apenas prestaba atención al contenido de su plato, demasiado ocupada en observar discretamente a los ocupantes de las mesas cercanas.</p>
+                <p>—Mira aquel caballero de la mesa del capitán—susurró, inclinándose ligeramente hacia su hermana—. Dicen que es un magnate naviero de Boston. La señora Blackwood me aseguró que posee una flota entera de barcos mercantes.</p>
+                <p>Amelia siguió la mirada de su hermana hasta posarla en un hombre atractivo de aproximadamente treinta años. Alto, de complexión atlética y cabello oscuro peinado hacia atrás con estudiada elegancia, proyectaba esa inequívoca confianza que solo la combinación de fortuna y posición social privilegiada puede conferir. En aquel preciso instante, como si hubiera percibido el escrutinio, el caballero en cuestión giró ligeramente su rostro hacia ellas. Sus miradas se cruzaron brevemente antes de que Amelia, siguiendo el decoro apropiado, desviara la suya.</p>
+                <p>—Me temo que la señora Blackwood ha sido extraordinariamente generosa con su información sobre los demás pasajeros —observó, regresando su atención a la sopa—. No olvidemos que las presentaciones formales aún no se han producido.</p>
+                <p>Elizabeth suspiró con exasperación juvenil.</p>
+                <p>—A veces eres excesivamente rigurosa con las formalidades, Amy. ¿De qué sirve cruzar un océano si llevamos con nosotras cada minúscula regla de Northbrook?</p>
+                <p>Antes de que Amelia pudiera responder a tan revolucionaria pregunta, un movimiento en la mesa del capitán captó su atención. El caballero que había sido objeto de su conversación se ponía en pie, intercambiaba algunas palabras con sus compañeros, y para desconcierto de Amelia, se dirigía directamente hacia ellas con paso decidido.</p>
+                <p>—Buenas noches, señor Quincy—saludó al llegar a su mesa, con un acento americano que suavizaba las consonantes y alargaba las vocales de manera peculiar, y solicitó ser presentado a las damas—. Alexander Harrington, a su servicio. Tengo entendido que son ustedes parientes de mi tía, Augusta Harrington.</p>
+                <p>El apellido produjo un instantáneo reconocimiento en Amelia. Este era, entonces, el sobrino de aquellos primos Harrington con quienes habían concertado su estancia en Boston. La correspondencia jamás había mencionado a un sobrino varón que se encontraría casualmente en el mismo navío.</p>
+                <p>—En efecto—respondió, recuperando rápidamente la compostura—. Amelia Woodfield, y mi hermana Elizabeth. Es un placer inesperado encontrar parentesco a bordo.</p>
+                <p>Alexander Harrington esbozó una sonrisa que transformó sus facciones correctas pero severas en algo considerablemente más atractivo aún. Una sonrisa que, Amelia no pudo evitar notar, parecía practicada para producir precisamente ese efecto.</p>
+                <p>—El placer es enteramente mío. Mi tía estará encantada de saber que hemos coincidido en la travesía. Viajo regularmente a Europa por asuntos comerciales, pero rara vez el destino dispone de encuentros tan afortunados.</p>
+                <p>La forma en que sus ojos ámbar, de un dorado intenso se demoraron en el rostro de Amelia mientras pronunciaba "afortunados" contenía una insinuación que ella encontró simultáneamente halagadora e impertinente.</p>
+                <p>—Ciertamente, las coincidencias pueden resultar providenciales—respondió con estudiada neutralidad—. ¿Regresa usted a Boston tras concluir sus negocios?</p>
+                <p>Harrington asintió, mientras su mirada realizaba un rápido inventario de los demás comensales en la mesa.</p>
+                <p>—Me preguntaba si les agradaría unirse a nuestra mesa. El capitán aprecia la compañía femenina durante las cenas, y ustedes parecen un tanto... aisladas aquí.</p>
+                <p>La invitación, aunque formulada cortésmente, llevaba implícita una evaluación de su situación social que Amelia encontró ligeramente condescendiente. Era como si aquel americano, por el mero hecho de estar sentado a la mesa del capitán, considerara que les hacía un favor rescatándolas de su anonimato.</p>
+                <p>—Es muy amable, señor Harrington—respondió con una sonrisa educada y firme—, pero no desearíamos incomodar a la señora Winterbourne y su acompañante, el señor Quincy, abandonandolos tan abruptamente. Quizá en otra ocasión.</p>
+                <p>Un fugaz destello de sorpresa cruzó el rostro de Alexander Harrington, evidentemente poco habituado a recibir negativas.</p>
+                <p>—Comprendo. La lealtad es ciertamente una virtud admirable —concedió, recuperando rápidamente su sonrisa confiada—. Permítanme entonces extender formalmente la invitación para el té de mañana en el salón de primera clase. A las cuatro. Mi tía consideraría una grave falta de cortesía que no atendiera apropiadamente a sus parientes.</p>
+                <p>Elizabeth, incapaz de contener su entusiasmo, respondió antes de que Amelia pudiera formular una excusa:</p>
+                <p>—Estaremos encantadas, señor Harrington. Es extraordinariamente gentil por su parte.</p>
+                <p>—Excelente —sentenció él, dirigiendo ahora toda su atención hacia Amelia—. Hasta mañana, entonces.</p>
+                <p>Cuando Alexander Harrington regresó a su mesa, Amelia notó que su hermana la observaba con ojos brillantes de emoción.</p>
+                <p>—¡Nuestro primer día en sociedad americana y ya hemos sido presentadas al soltero más distinguido a bordo! —susurró Elizabeth, apenas conteniendo su exaltación—. Y es nuestro pariente. Qué providencial, como tú misma has señalado.</p>
+                <p>Amelia contempló a su hermana con una mezcla de diversión y preocupación. La facilidad con que Elizabeth formaba esperanzas románticas era precisamente el tipo de vulnerabilidad que debía proteger en su nueva vida.</p>
+                <p>—Es meramente una cortesía familiar, Lizzy. Y no olvidemos que nuestro destino en Boston no es social sino profesional. Seré la institutriz de sus primas, no una invitada en situación de igualdad.</p>
+                <p>—Pero seguramente el señor Harrington no nos considerará como parte del servicio —protestó Elizabeth—. Somos parientes nobles, por distante que sea el parentesco.</p>
+                <p>Amelia suspiró imperceptiblemente. ¿Cómo explicar a su romántica hermana las sutiles pero infranqueables líneas que separaban las distintas esferas sociales según la fortuna disponible? Su apellido era la única posesión de valor que ostentaban. Aquellas mismas líneas que ella esperaba, si no borrar, al menos redefinir mediante su aventura americana.</p>
+                <p>—Procuremos no formarnos expectativas excesivas, querida. El señor Harrington parece un caballero educado, pero claramente pertenece a un mundo considerablemente distinto al nuestro.</p>
+                <p>Al día siguiente, la hora del té por la tarde llegó con una prontitud que Amelia encontró casi irritante, considerando la meticulosa preparación a la que Elizabeth había sometido tanto su atuendo como el de ella. Tras descartar tres vestidos, respetando el luto intermedio, por ser "excesivamente ingleses" o "insuficientemente modernos", la menor de las Woodfield había seleccionado finalmente un conjunto de tarde en tono lavanda para sí misma, mientras insistía en que Amelia luciera su vestido de seda azul marino oscuro, "el único que realmente hace justicia al color de tus ojos".</p>
+                <p>El salón de música de primera clase del SS Germanic representaba la culminación del lujo marítimo: de caoba pulida, alfombras persas, butacas tapizadas en terciopelo y amplios ventanales que ofrecían una vista panorámica del océano. En él, un cuarteto de cuerda interpretaban discretamente a Debussy en un rincón, mientras camareros de guante blanco circulaban con bandejas de plata que transportaban delicados pasteles y sándwiches triangulares sin corteza.</p>
+                <p>Alexander Harrington ya las esperaba junto a una mesa dispuesta cerca de los ventanales. Se puso en pie al verlas aproximarse, revelando su considerable estatura de metro ochenta y cinco. Vestía un traje gris claro impecablemente cortado, difería sutilmente del estilo británico en ciertos detalles que resultaban simultáneamente extraños y atractivos, como si la moda americana hubiera tomado los principios de la elegancia inglesa para luego modificarlos según sus propias reglas.</p>
+                <p>—Señoritas Woodfield, puntualidad británica—saludó, con aquella sonrisa que Amelia comenzaba a considerar su arma social predilecta—. Confío en que su madre se encuentre más recuperada hoy.</p>
+                <p>—Ligeramente mejorada, gracias—respondió Amelia mientras él retiraba caballerosamente las sillas para que tomaran asiento—. El médico de a bordo sugiere que el mareo disminuirá a medida que avance la travesía.</p>
+                <p>—Los caprichos del Atlántico han vencido a navegantes mucho más experimentados que su señora madre—comentó Alexander mientras hacía una seña al camarero—. Mi primer cruce, a los doce años, lo pasé enteramente en mi camarote, convencido de que moriría antes de llegar a puerto.</p>
+                <p>La confesión, entregada con despreocupada franqueza, suavizó ligeramente la prevención de Amelia. Había esperado encontrar nuevamente aquella condescendencia apenas velada de su primer encuentro, pero el tono del señor Harrington parecía genuinamente cordial.</p>
+                <p>—¿Ha realizado muchas travesías desde entonces?—preguntó Elizabeth, evidentemente cautivada por la presencia masculina.</p>
+                <p>—Al menos dos cada año desde que me hice cargo de la división europea de nuestros negocios—respondió él, mientras el camarero servía té en delicadas tazas de porcelana—. Boston y Londres se han convertido en mis dos hogares, aunque confieso una creciente preferencia por el primero. Inglaterra conserva un encanto histórico indudable, pero América posee una vitalidad que resulta adictiva una vez que se ha experimentado.</p>
+                <p>—Suena usted como un embajador oficioso de las virtudes americanas, señor Harrington—observó Amelia.</p>
+                <p>Alexander la miró directamente, y Amelia percibió en sus ojos esa intensidad característica de quienes están habituados a evaluar rápidamente a sus interlocutores.</p>
+                <p>—Mera honestidad, señorita Woodfield. No pretendo convertirla, simplemente anticiparle que encontrará un mundo considerablemente distinto al que dejó atrás. Para bien o para mal, dependiendo de su disposición hacia el cambio.</p>
+                <p>—Mi disposición hacia el cambio es precisamente lo que me ha traído a bordo de este barco, señor Harrington. Somos como pocas damas inglesas.</p>
+                <p>La sonrisa de Alexander adquirió un matiz diferente, casi de aprobación ante su respuesta.</p>
+                <p>—No pretendía cuestionar su espíritu aventurero, que evidentemente posee en abundancia, señorita Woodfield. Aunque debo corregirla en un punto: no son pocas las damas inglesas que cruzan el Atlántico en busca de nuevos horizontes. De hecho, existe toda una categoría social que se ha ganado un nombre específico.</p>
+                <p>—¿Y cuál sería esa categoría, si puede saberse?—inquirió Elizabeth con genuina curiosidad.</p>
+                <p>—Las denominan "novias del dólar"—respondió él, con un brillo divertido en los ojos—. Jovencitas de excelente cuna pero menguante fortuna que vienen a América en busca de millonarios dispuestos a intercambiar riqueza reciente por apellidos venerables.</p>
+                <p>Amelia sintió que un ligero rubor teñía sus mejillas, no de vergüenza sino de indignación. La sugerencia implícita era demasiado clara para ignorarla.</p>
+                <p>—Afortunadamente, señor Harrington, nuestra situación difiere significativamente de esa categoría—replicó con una frialdad que sorprendió incluso a Elizabeth—. Venimos a trabajar honradamente, no a cazar fortunas.</p>
+                <p>Alexander pareció momentáneamente desconcertado por la vehemencia de su respuesta. Depositó su taza con deliberada lentitud antes de responder:</p>
+                <p>—Le ruego me disculpe si mi comentario resultó ofensivo. Nada más lejos de mi intención que sugerir semejante comparación. Conozco perfectamente el propósito de su viaje y admiro sinceramente su determinación. No todas las damas poseen el coraje para abrazar nuevas responsabilidades en circunstancias adversas.</p>
+                <p>La tensión fue interrumpida por la llegada de un oficial del barco que se aproximó a su mesa con expresión solícita.</p>
+                <p>—Señor Harrington, el capitán solicita su presencia en el puente. Parece que ha recibido un radiograma urgente relacionado con sus negocios.</p>
+                <p>Alexander se puso en pie inmediatamente, su rostro transformado por una súbita seriedad profesional.</p>
+                <p>—Señoritas, les ruego me disculpen. El deber llama. —Hizo una breve inclinación—. Confío en que nos reencontraremos en la cena.</p>
+                <p>Tras su partida, Elizabeth miró a su hermana con perplejidad.</p>
+                <p>—Fuiste innecesariamente cortante con él, Amy. Solo estaba siendo conversador.</p>
+                <p>Amelia observó el océano a través de los amplios ventanales del salón. La vasta extensión de agua, cambiante y poderosa, parecía reflejar la turbulencia de sus propios pensamientos.</p>
+                <p>—Hay una diferencia sutil, Lizzy, entre la conversación y la provocación. El señor Harrington parece disfrutar caminando en esa línea divisoria.</p>
+                <p>—Yo lo encontré absolutamente encantador—insistió Elizabeth—. Y es evidente que siente cierta predilección por ti. La forma en que te miraba...</p>
+                <p>—La forma en que me miraba—interrumpió Amelia con súbita claridad— era exactamente la misma que adoptaría ante un espécimen curioso: con una mezcla de interés y evaluación. Como si intentara determinar hasta qué punto esta institutriz inglesa resultará una adición conveniente o problemática al universo de los Harrington.</p>
+                <p>A pesar de la firmeza de sus palabras, Amelia no podía negar una incómoda verdad: la presencia de Alexander Harrington la había afectado más de lo que estaba dispuesta a reconocer. Había algo en su combinación de confianza absoluta y perspicacia que resultaba simultáneamente irritante y cautivador.</p>
+                <p>El cuarto día de travesía amaneció con una serenidad inesperada. El Atlántico, que había mostrado su temperamento caprichoso durante las primeras jornadas, parecía ahora decidido a exhibir su faceta más apacible. Amelia Woodfield, cuya constitución había resistido admirablemente los embates del oleaje, a diferencia de su madre que permanecía aún recluida en el camarote, decidió aprovechar aquella bonanza para disfrutar de un paseo matutino por la cubierta superior.</p>
+                <p>El aire salino acarició su rostro mientras contemplaba la vasta extensión azul que se extendía hasta un horizonte donde cielo y mar se fundían en una línea difusa. Sus pensamientos, como las gaviotas que ocasionalmente escoltaban al barco, volaban libremente. Fue inevitable recordar a su padre, el mar azul le evocó sus ojos, la brisa marina a sus suaves caricias. Le echaba de menos, su despreocupada sonrisa vino a su mente. Las lágrimas le recorrieron las mejillas y un dolor profundo le oprimió el pecho.</p>
+                <p>Alexander Harrington la contempló de lejos. Ella se había recogido el cabello cobrizo en un moño sencillo pero elegante, permitiendo que algunos rizos rebeldes enmarcaran su rostro, que bailaban al compás de la suave brisa. Aun Vestía un traje de paseo en tono negro, en señal de su luto, tras cuatro meses del fallecimiento de su progenitor. Su figura erguida junto a la barandilla de cubierta ofrecía la imagen perfecta de serenidad contemplativa. Al aproximarse se percató que lloraba. Vaciló en acercarse. Finalmente le ofreció su pañuelo.</p>
+                <p>—Señorita Woodfield, sírvase mi pañuelo—lo tendió con gesto gentil, como si el mismo acto contuviera la ofrenda del consuelo.</p>
+                <p>La voz masculina, con aquel acento americano la sorprendió.</p>
+                <p>—Señor Harrington—respondió afectada, aceptando el pañuelo—, gracias.</p>
+                <p>Amelia se secó las lágrimas y Alexander Harrington se situó junto a ella en la barandilla, en silencio, manteniendo una distancia respetable pero lo suficientemente cerca para que Amelia percibiera el aroma de su loción de afeitar mezclado con el aire marino. Vestía un traje informal, pero impecablemente cortado que evidenciaba tanto la calidad del tejido como la destreza del sastre. El viento marino había despeinado ligeramente su cabello oscuro, otorgándole un aspecto menos formal que el día anterior.</p>
+                <p>—La muerte pone fin a la presencia, no al amor, señorita Woodfield.</p>
+                <p>Permanecieron un momento en silencio, juntos observando el horizonte, hasta que Alexander le sugirió caminar por la cubierta. Manteniendo un ritmo pausado, mientras el barco avanzaba firmemente hacia el oeste, él comenzó una conversación;</p>
+                <p>—Me sorprende usted, señorita Woodfield. Siendo inglesa, imagine sería esclava de su reserva. No creí ser testigo del pesar que aún le embarga tras la pérdida de su padre.</p>
+                <p>—Y usted es muy americano, señor Harrington. Excesivamente directo en sus observaciones.</p>
+                <p>—¿Encuentra mi franqueza ofensiva?—preguntó él, estudiando su reacción—. Los ingleses tienen una relación curiosa con la honestidad: la exigen como virtud moral pero la consideran de pésimo gusto en la conversación cotidiana.</p>
+                <p>—No es su honestidad lo que podría encontrar cuestionable—respondió Amelia, ajustando su sombrero—, sino la libertad con que se permite comentarios que, en Hampshire, requerirían un grado de familiaridad considerablemente mayor al nuestro.</p>
+                <p>Alexander soltó una breve risa.</p>
+                <p>—Me temo, señorita Woodfield, que deberá acostumbrarse a tal libertad en América. Particularmente en Boston, donde las relaciones sociales siguen reglas menos rígidas que las londinenses. Deberá despojarse de su carácter altivo y distante.</p>
+                <p>—Supongo que será parte de mi adaptación al Nuevo Mundo—concedió ella, conteniendose con resignación fingida.</p>
+                <p>—No crea que no soy perfectamente capaz de emplear tales censuras cuando la situación lo requiere, señorita. Sin embargo, le sugiero que a cuatro días de distancia de Inglaterra y a tres de América, ejerza cierta libertad para expresarse con total honestidad. Como si este espacio, intermedio entre mundos y en mi compañía, le permitieran una franqueza que ninguno de los dos continentes tolera completamente.</p>
+                <p>—Aplicaré este principio a nuestra conversación, si me lo permite, y le confesaré que encuentro sus comentarios irritantes, ¿de verdad cree que necesito de su influjo o del océano como territorio neutral para expresarme libremente?. Hago un enorme esfuerzo por moderar mis comentarios para mantener la cortesía que a usted le falta. Llamarme altiva y distante, ¡¿Cómo presume conocerme lo suficiente para emitir juicios tan categóricos sobre mi persona, señor Harrington?!</p>
+                <p>—Su respuesta ha sido muy americana, señorita Woodfield. Prefiero verla enfadada que triste, perdóneme— inclinó ligeramente la cabeza, tomando el ala de su sombrero a modo de arrepentimiento.</p>
+                <p>El sonrió de una forma encantadora que la desconcertó. Amelia observó de reojo el perfil del caballero. La luz matinal definía con precisión cada rasgo de su rostro: la mandíbula fuerte, la nariz recta, los ojos de un extraordinario tono ámbar bajo cejas oscuras y expresivas. Era indudablemente atractivo, pero lo que resultaba más perturbador era esa aura de confianza absoluta que parecía emanar de él, como si el mundo entero estuviera organizado precisamente para su conveniencia.</p>
+                <p>—Su pañuelo, señor Harrington—simulando un enfado que había desaparecido bajo su mirada ámbar y su encantadora sonrisa.</p>
+                <p>—Consérvelo, por favor. Las mujeres jamás lleváis un humilde pañuelo a mano.</p>
+                <p>—Gracias—. La tela era suave y fresca, de lino irlandés. Tan fino que la luz se filtraba a través de su textura con un leve resplandor nacarado. En una de sus esquinas, bordadas discretamente en hilo blanco, se destacaban las iniciales del caballero, A.H. , más por tradición que por vanidad. Guardó el pañuelo en su retículo, un bolso pequeño y redondeado, de satén bordado a mano y decorado con perlas.</p>
+                <p>Continuaron su paseo por cubierta y tras un breve silencio, él preguntó;</p>
+                <p>—¿Qué cree que hay más allá de este velo de existencia que llamamos vida?</p>
+                <p>La pregunta, tan directa y profunda, tomó nuevamente a Amelia por sorpresa. No era el tipo de conversación que un caballero normalmente entablaría con una dama en tales circunstancias.</p>
+                <p>—Acabo de perder a mi padre, señor Harrington. Estoy más inclinada que nunca a creer en la vida después de la muerte—respondió, eligiendo cuidadosamente sus palabras.</p>
+                <p>—Lo siento, no ha sido el tema de conversación más oportuno.</p>
+                <p>—No se preocupe, confieso que siempre me ha parecido demasiado limitada la visión de un cielo y un infierno para abarcar la infinita complejidad del alma humana.</p>
+                <p>Alexander la observaba con creciente interés, como si cada palabra revelara un nuevo aspecto de ella que encontraba fascinante.</p>
+                <p>—Continúe, por favor—la animó suavemente—. Me intriga enormemente su perspectiva.</p>
+                <p>Amelia respiró profundamente, permitiéndose una libertad de expresión que rara vez se concedía.</p>
+                <p>—Considero que quizás no existe un destino universal para todos, sino que cada alma encuentra su propio camino según la vida que ha llevado y las verdades que ha comprendido. No puedo concebir que el mismo destino aguarde al erudito compasivo y al tirano ignorante, independientemente de las plegarias que cada uno haya pronunciado.</p>
+                <p>—Una visión sorprendente. ¿No cree usted en el perdón?</p>
+                <p>—El perdón debe liberar al ofendido, no al ofensor. Este último debe expiar su culpa.</p>
+                <p>—¿Busca justicia o castigo, señorita Woodfield?</p>
+                <p>—Es fácil proclamar justicia, siempre que la ofensa sea leve. ¿Y aquellos casos donde la crueldad es evidente y trae terribles consecuencias, podemos permanecer tan templados?</p>
+                <p>—Su declaración revela que tiene un costado apasionado y vengativo.</p>
+                <p>—No en absoluto, soy indulgente. Aunque nunca me he visto en la situación de desear venganza, creo que quien ejerce el mal vivirá su propia condena.</p>
+                <p>—Lo que los hinduistas llaman Karma, señorita. Personalmente, creo que si existiera el Karma el mundo sería más justo y no lo es. Para mí esto es todo lo hay. Solo seguiremos existiendo en el recuerdo de nuestros seres queridos. Esta es nuestra única oportunidad y hay que aprovecharla.</p>
+                <p>—¿Realmente considera que todo lo que somos simplemente se extingue, como una vela soplada por el viento?"</p>
+                <p>—Considero— respondió él con deliberada precisión—, que nuestro legado persiste en las vidas que hemos tocado, en las obras que dejamos tras nosotros. Mis padres viven en mis acciones y memorias, señorita Woodfield, no en algún paraíso celestial, general o personal según su opinión.</p>
+                <p>—Pero eso reduce la eternidad a mera memoria humana, que es frágil y finita—objetó ella.</p>
+                <p>Alexander contempló el horizonte por un momento, como buscando inspiración en la línea donde el cielo se fundía con el mar.</p>
+                <p>—Quizás—sugirió él con una seductora sonrisa—, deberíamos concentrarnos en vivir plenamente esta existencia que podemos confirmar, en lugar de especular sobre una que permanece, en el mejor de los casos, incierta.</p>
+                <p>—¿No es precisamente la incertidumbre lo que hace que la fe sea virtud y no mero cálculo?—respondió ella—. Creo firmemente que nos reencontraremos con aquellos que hemos amado. Que nada valioso se pierde verdaderamente.</p>
+                <p>—Su optimismo es admirable, señorita Woodfield, aunque no puedo compartirlo. Me parece que la muerte es simplemente el final natural de un proceso biológico, sin más trascendencia que el cambio de estaciones.</p>
+                <p>—¿Y no encuentra esa perspectiva terriblemente desoladora?— preguntó ella.</p>
+                <p>—En absoluto—respondió Alexander—, encuentro que otorga un valor incomparable a cada momento que vivimos. Si no existe un 'después', entonces el 'ahora' adquiere significado supremo.</p>
+                <p>—Quizás nuestra discrepancia fundamental, señor Harrington, no reside tanto en lo que creemos sobre la muerte, sino en cómo elegimos vivir a la luz de esas creencias.</p>
+                <p>—Me atrevo a sugerir que en la práctica nuestras vidas no son tan distintas como nuestras filosofías podrían indicar, señorita Woodfield.</p>
+                <p>—¿Cómo es eso?—preguntó ella, genuinamente intrigada.</p>
+                <p>—Meramente señalar que incluso las perspectivas más opuestas pueden, en ocasiones, conducir a actitudes sorprendentemente compatibles ante la vida.</p>
+                <p>Detuvieron el paseo y se miraron. Un breve silencio se instaló entre ellos, no incómodo sino contemplativo, mientras la complicidad ganaba terreno. Ella bajó la mirada y él recorrió su rostro, hasta posarse en sus labios. Amelia se giró y posó sobre la barandilla. Alexander le siguió, colocándose a su lado.</p>
+                <p>—Vivir únicamente para el momento presente me parece imprudente—contestó finalmente—. Una existencia sin propósito ni dirección difícilmente puede considerarse bien aprovechada.</p>
+                <p>Alexander dejó escapar una risa breve, pero no desprovista de calidez.</p>
+                <p>—No confunda espontaneidad con frivolidad, señorita Woodfield. Defender que debemos saborear cada instante no implica abandonar toda ambición o responsabilidad.</p>
+                <p>—Y sin embargo, su filosofía parece invitar precisamente a eso—insistió ella—. La vida no es meramente una colección de momentos aislados, sino un tejido complejo donde cada decisión presente afecta inevitablemente nuestro futuro.</p>
+                <p>—¿Y de qué sirve un futuro cuidadosamente preparado si, para alcanzarlo, sacrificamos toda oportunidad de felicidad en el camino?—replicó Alexander, su voz adquiriendo una intensidad inesperada—. He conocido demasiados hombres que postergaron cada placer, cada aventura, cada posibilidad de auténtica satisfacción en nombre de una seguridad futura, sólo para descubrir, al final de sus días, que habían olvidado cómo disfrutar de la vida que con tanto esmero habían preservado.</p>
+                <p>Amelia guardó silencio unos instantes, sorprendida por la pasión con que hablaba su interlocutor.</p>
+                <p>—¿Acaso su propio éxito no se ha construido sobre decisiones prudentes y consideradas?</p>
+                <p>—Mi éxito, señorita Woodfield—respondió él—, se ha construido precisamente sobre mi voluntad de aprovechar oportunidades que otros consideraban excesivamente arriesgadas. Si hubiera esperado el momento "perfecto" para cada empresa, seguiría siendo un simple empleado en el despacho de mi tío.</p>
+                <p>—La audacia tiene ciertamente su mérito, no lo niego—concedió—. Pero la impulsividad rara vez conduce a resultados favorables, especialmente para aquellos que carecen de la red de seguridad que proporciona una fortuna establecida.</p>
+                <p>Alexander frunció ligeramente el ceño, como si percibiera una crítica implícita.</p>
+                <p>—¿Insinúa que mi disposición a abrazar el presente es meramente producto de mi privilegio?</p>
+                <p>—Simplemente observo que resulta considerablemente más sencillo abogar por vivir el momento cuando dicho momento no conlleva potenciales calamidades financieras —respondió ella con una sonrisa que suavizaba parcialmente la agudeza de sus palabras.</p>
+                <p>Para su sorpresa, Alexander no pareció ofenderse. Por el contrario, una expresión de genuino respeto cruzó su rostro.</p>
+                <p>—Su argumento posee innegable validez. Sin embargo, permítame señalar que incluso aquellos con recursos limitados enfrentan la misma disyuntiva fundamental: ¿vivir cautelosamente según expectativas ajenas, o arriesgarse a buscar la felicidad en sus propios términos? Como lo hizo usted al emprender este viaje a América.</p>
+                <p>La mención velada a su precaria situación económica la incomodó.</p>
+                <p>—Supongo —musitó Amelia, tratando de contener su indignación.</p>
+                <p>—Precisamente —confirmó Alexander con evidente satisfacción—. Su presencia aquí contradice su propia filosofía declarada. Abandonó la seguridad de lo conocido por la incertidumbre de una nueva vida. Eso, querida señorita Woodfield, fue un acto de fe en el presente, no de calculada previsión.</p>
+                <p>—Es cierto, aunque se equivoca cuando da por hecho que en la decisión no intervino el discernimiento. ¿No sería más sabio buscar un equilibrio entre la espontaneidad y la prudencia?</p>
+                <p>—La moderación es una virtud tradicionalmente celebrada—concedió—, pero permítame una pregunta final: ¿no teme usted, señorita Woodfield, que al buscar siempre el camino intermedio, termine perdiendo las experiencias más intensas que la vida puede ofrecer? Los grandes amores, las pasiones arrolladoras, las alegrías más profundas... todas ellas suelen encontrarse en los extremos, no en el prudente centro.</p>
+                <p>La pregunta, formulada con una intensidad que parecía transcender la discusión filosófica, provocó en Amelia un inexplicable calor que ascendió por su cuello hasta sus mejillas. La proximidad de Alexander, el tono íntimo de su voz... todo ello confería a la conversación un carácter que iba más allá del mero intercambio de ideas.</p>
+                <p>—Quizás, señor Harrington —respondió finalmente— el verdadero arte de vivir no consista en elegir entre extremos, sino en reconocer cuándo cada cual resulta apropiada. Hay momentos para la audacia y momentos para la cautela.</p>
+                <p>—¿Y este momento, señorita Woodfield? —inquirió Alexander, su voz apenas un murmullo, reclinándose hacia ella—. ¿Cómo lo calificaría?</p>
+                <p>—Este momento—respondió con una sonrisa que combinaba cortesía y reserva—, lo calificaría como uno en que la prudencia nos aconseja concluir nuestra conversación. Hemos coincidido que estamos en desacuerdo en varios temas, señor Harrington.</p>
+                <p>Alexander inclinó levemente la cabeza, aceptando su retirada táctica con elegancia.</p>
+                <p>—Nuestras futuras discrepancias quedan entonces aplazadas—observó Alexander—. ¿Sabe lo que más me intriga de usted, señorita Woodfield?.</p>
+                <p>—No puedo imaginarlo —respondió ella con cautela.</p>
+                <p>—Que mientras defiende verbalmente la cautela y la tradición, sus acciones revelan un espíritu considerablemente más audaz de lo que está dispuesta a admitir. Me pregunto cuál de las dos señoritas representa su verdadera naturaleza.</p>
+                <p>Amelia sonrió y él agregó con picardía seductora;</p>
+                <p>—Tengo fe de que finalmente, usted desde su reserva británica, yo desde mi pragmatismo americano, podremos coincidir en algo.</p>
+                <p>—Lo dudo mucho, señor Harrington— sentenció Amelia en tono divertido mientras le tendía la mano para despedirse.</p>
+                <p>Cogió su mano, haciendo una reverencia se inclinó ante ella.</p>
+                <p>—No necesito coincidir en ideas para disfrutar del placer de su compañía.</p>
+                <p>La miro a los ojos, actuando como un verdadero seductor. Amelia, tras despedirse, se marchó, dejándolo a sus espaldas, sosteniendo con su mano su pequeño sombrero que era víctima de la fuerte brisa marina. Él se mantuvo inmovil, observando su femenina figura alejarse.</p>
+                <p>— ¡Vaya!—comentó para sí, inflando su pecho con un suspiro.</p>
+            </article>
+
+        </div>
+        
+        <!-- Sección de Compra (Final) -->
+        <hr class="separator">
+        <section class="my-12 text-center">
+            <h3 class="text-2xl font-semibold mb-6 text-stone-800">Consigue tu copia</h3>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan-ebook/dp/B0FGTMY2CH" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-stone-700 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><span class="text-xl">📖</span>Ebook</a>
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan/dp/B0FGY5FCRW" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-stone-700 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><span class="text-xl">📗</span>Tapa Blanda</a>
+                <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan/dp/B0FGY1TJKC" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-stone-700 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><span class="text-xl">📘</span>Tapa Dura</a>
+            </div>
+        </section>
+
+    </main>
+    
+    <script>
+        // Script para manejar la visibilidad del menú de compra
+        const buyButton = document.getElementById('buy-button');
+        const buyMenu = document.getElementById('buy-menu');
+
+        buyButton.addEventListener('click', (event) => {
+            event.stopPropagation(); // Evita que el evento de clic se propague al documento
+            const isHidden = buyMenu.classList.contains('hidden');
+            if (isHidden) {
+                // Muestra el menú
+                buyMenu.classList.remove('hidden');
+                // Inicia la animación de entrada
+                setTimeout(() => {
+                    buyMenu.classList.remove('scale-95', 'opacity-0');
+                    buyMenu.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                // Inicia la animación de salida
+                buyMenu.classList.remove('scale-100', 'opacity-100');
+                buyMenu.classList.add('scale-95', 'opacity-0');
+                // Oculta el menú después de que termine la animación
+                setTimeout(() => {
+                    buyMenu.classList.add('hidden');
+                }, 300); // La duración debe coincidir con la transición en CSS
+            }
+        });
+
+        // Cierra el menú si se hace clic fuera de él
+        document.addEventListener('click', (event) => {
+            const isClickInside = buyMenu.contains(event.target) || buyButton.contains(event.target);
+            if (!buyMenu.classList.contains('hidden') && !isClickInside) {
+                buyMenu.classList.remove('scale-100', 'opacity-100');
+                buyMenu.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    buyMenu.classList.add('hidden');
+                }, 300);
+            }
+        });
+    </script>
+
+</body>
+</html>
+
