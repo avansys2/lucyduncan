@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <style>
+        /* Agregamos un desplazamiento suave para la navegación */
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Lora', serif;
             background-color: #fdfaf6; /* Un blanco roto cálido para la página */
@@ -59,6 +63,10 @@
         #buy-menu {
             transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
         }
+        /* Estilo para el ancla de navegación para compensar la altura de la barra de navegación fija si la hubiera */
+        section[id] {
+            scroll-margin-top: 4rem; /* Ajusta este valor si tienes una barra de navegación fija */
+        }
     </style>
 </head>
 <body class="text-stone-800">
@@ -101,9 +109,19 @@
         <!-- Video Trailer -->
         <section class="my-8">
              <div class="relative w-full" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
-                <iframe class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/36C7kKj8s0g" title="Tráiler del libro Una Dama en Boston" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
+                 <iframe class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/36C7kKj8s0g" title="Tráiler del libro Una Dama en Boston" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+             </div>
         </section>
+
+        <!-- INICIO: Menú de Navegación Rápida -->
+        <nav class="my-10 py-6 bg-amber-100 rounded-lg border border-amber-200">
+            <ul class="flex flex-wrap justify-center gap-x-4 gap-y-4">
+                <li><a href="#sinopsis" class="block px-5 py-2 text-stone-700 bg-white hover:bg-stone-800 hover:text-white font-semibold rounded-full shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Sinopsis</a></li>
+                <li><a href="#autora" class="block px-5 py-2 text-stone-700 bg-white hover:bg-stone-800 hover:text-white font-semibold rounded-full shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Sobre la Autora</a></li>
+                <li><a href="#capitulos" class="block px-5 py-2 text-stone-700 bg-white hover:bg-stone-800 hover:text-white font-semibold rounded-full shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Leer Primeros Capítulos</a></li>
+            </ul>
+        </nav>
+        <!-- FIN: Menú de Navegación Rápida -->
 
         <!-- Sección de Compra (Inicio) -->
         <section class="my-12 text-center">
@@ -114,7 +132,32 @@
                 <a href="https://www.amazon.es/Una-Dama-Boston-Lucy-Duncan/dp/B0FGY1TJKC" target="_blank" rel="noopener noreferrer" class="bg-stone-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-stone-700 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><span class="text-xl">📘</span>Tapa Dura</a>
             </div>
         </section>
+                <hr class="separator">
 
+        <!-- Sinopsis / Contraportada -->
+        <section id="sinopsis" class="my-12 text-lg back-cover-text">
+            <h3 class="text-3xl font-bold mb-6 text-center">Sinopsis</h3>
+            <p>Para una dama sin fortuna en la Inglaterra de 1878, solo hay dos destinos: la resignación o un matrimonio ventajoso. La señorita Amelia Woodfield elige un tercero: América.</p>
+            <p>Forzada a abandonar Inglaterra, la inteligente Amelia Woodfield busca su independencia en la vibrante ciudad de Boston. Pero este nuevo futuro le impondrá desafíos que jamás imaginó.</p>
+            <p>Mientras lucha por su derecho a la educación, Amelia deberá enfrentarse a la elección más difícil de todas: el futuro seguro que siempre le dijeron que debía desear o un amor incierto que podría costarle la independencia por la que tanto ha luchado.</p>
+            <p class="quote">"Una Dama en Boston" es una novela apasionante sobre el precio de la libertad, la valentía de desafiar el destino y el descubrimiento de que el amor más verdadero es aquel que nos hace más fuertes.</p>
+            <p class="quote">"Inteligente, apasionada y absolutamente inolvidable. La heroína que el romance histórico estaba esperando."</p>
+            <p class="quote">"Una tensión romántica que arde a fuego lento hasta un clímax explosivo. Imposible dejar de leer."</p>
+            <p class="quote">"Con el ingenio de Jane Austen y una pasión moderna, 'Una Dama en Boston' es una obra maestra del género."</p>
+        </section>
+
+        <!-- Biografía de la Autora -->
+        <section id="autora" class="my-12 author-bio">
+            <h3 class="text-3xl font-bold mb-8 text-center">Sobre la Autora</h3>
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="w-48 flex-shrink-0">
+                    <img src="./Lucy.png" alt="Foto de la autora, Lucy Duncan" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="text-lg text-justify">
+                    <p>Lucy Duncan, nacida el 13 de Agosto de 1976, debuta con una obra que ha nacido gestada en silencio y escrita con la intención de dar protagonismo a su narrativa. Solo una voz tímida, con mucho que contar, que encuentra su lugar entre las páginas de sus libros. Apasionada por las historias románticas que movilizan el alma y despiertan preguntas, escribe desde hace años en la intimidad, y ahora da el paso de compartir su universo con los lectores. Esta publicación es el inicio de un camino literario que promete no dejar indiferente.</p>
+                </div>
+            </div>
+        </section>
 
         <!-- Dedicatoria -->
         <section class="dedication text-lg">
@@ -137,7 +180,7 @@
         </section>
 
         <!-- Contenido de los capítulos -->
-        <div class="book-content text-lg">
+        <div id="capitulos" class="book-content text-lg">
             
             <!-- Capítulo 1 -->
             <article>
